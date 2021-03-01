@@ -161,5 +161,8 @@ export {
   useComponents,
 } from './components/ComponentsContext';
 
+const { cx } = styleHelpers;
+
+export { cx };
 export { sharedPropTypes, styleHelpers };
 export { uniqueId } from './util/id';

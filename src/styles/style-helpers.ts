@@ -25,6 +25,12 @@ function isTheme(args: ThemeArgs): args is Theme {
 export const getTheme = (args: ThemeArgs): Theme =>
   isTheme(args) ? args : args.theme;
 
+type StyleFn = (args: ThemeArgs) => SerializedStyles;
+
+export const cx = (...styleFns: (StyleFn | false | null | undefined)[]) => (
+  theme: Theme,
+) => styleFns.map((styleFn) => styleFn && styleFn(theme));
+
 export const shadowSingle = (args: ThemeArgs): SerializedStyles => {
   const theme = getTheme(args);
   return css`
